@@ -30,6 +30,7 @@
     "default-theme.js",
     "bootstrap-theme.js",
     "material-ui-theme.js",
+    "semantic-ui-theme.js",
     "index.js",
     "LICENSE.md",
     "README.md"
@@ -106,6 +107,7 @@
     "require-subvert": "^0.1.0",
     "rewire": "^2.5.1",
     "sass-loader": "^3.0.0",
+    "semantic-ui-react": "^0.67.0",
     "serialize-javascript": "^1.1.2",
     "sinon": "1.17.0",
     "style-loader": "^0.12.4",

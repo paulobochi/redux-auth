@@ -10,7 +10,8 @@ module.exports = {
     "index":             "./src/index",
     "bootstrap-theme":   "./src/views/bootstrap/index",
     "default-theme":     "./src/views/default/index",
-    "material-ui-theme": "./src/views/material-ui/index"
+    "material-ui-theme": "./src/views/material-ui/index",
+    "semantic-ui-theme": "./src/views/semantic-ui/index"
   },
   output:  {
     path:          path.join(__dirname),
