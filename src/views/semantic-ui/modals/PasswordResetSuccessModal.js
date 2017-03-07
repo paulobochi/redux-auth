@@ -91,7 +91,7 @@ class PasswordResetSuccessModal extends React.Component {
               loading={loading}
               type="submit"
               className="password-reset-success-modal-submit"
-              icon={<Glyphicon glyph="lock" />}
+              icon={<Icon name="lock" />}
               onClick={this.handleSubmit.bind(this)}
               {...this.props.inputProps.submit} />
           </Modal.Actions>

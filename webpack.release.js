@@ -49,6 +49,7 @@ module.exports = {
       "react-loader": "commonjs react-loader",
       "url": "commonjs url",
       "react-bootstrap": "commonjs react-bootstrap",
+      "semantic-ui-react": "commonjs semantic-ui-react",
       "material-ui/Dialog": "commonjs material-ui/Dialog",
       "material-ui/RaisedButton": "commonjs material-ui/RaisedButton",
       "material-ui/FlatButton": "commonjs material-ui/FlatButton",
