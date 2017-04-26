@@ -88,7 +88,7 @@ export function getInitialEndpointKey () {
 
 // TODO: make this really work
 export function getSessionEndpointKey (k) {
-  let key = k || getCurrentEndpointKey();
+  var key = k || getCurrentEndpointKey();
   if (!key) {
     throw "You must configure redux-auth before use.";
   } else {
@@ -156,7 +156,7 @@ export function getPasswordResetRedirectUrl () {
 }
 
 export function getApiUrl(key) {
-  let configKey = getSessionEndpointKey(key);
+  var configKey = getSessionEndpointKey(key);
   return root.authState.currentEndpoint[configKey].apiUrl;
 }
 
