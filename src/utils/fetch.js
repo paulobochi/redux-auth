@@ -26,7 +26,7 @@ export function addAuthorizationHeader(accessToken, headers) {
   });
 }
 
-function getAuthHeaders(url) {
+export function getAuthHeaders(url) {
   if (isApiRequest(url)) {
     // fetch current auth headers from storage
     var currentHeaders = retrieveData(C.SAVED_CREDS_KEY) || {},
@@ -46,7 +46,7 @@ function getAuthHeaders(url) {
   }
 }
 
-function updateAuthCredentials(resp) {
+export function updateAuthCredentials(resp) {
   // check config apiUrl matches the current response url
   if (isApiRequest(resp.url)) {
     // set header for each key in `tokenFormat` config
