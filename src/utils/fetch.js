@@ -29,42 +29,41 @@ export function addAuthorizationHeader(accessToken, headers) {
 export function getAuthHeaders(url) {
   if (isApiRequest(url)) {
     // fetch current auth headers from storage
-    var currentHeaders = retrieveData(C.SAVED_CREDS_KEY) || {},
-        nextHeaders = {};
+    const currentHeaders = retrieveData(C.SAVED_CREDS_KEY) || {};
+    const nextHeaders = {};
 
     // bust IE cache
     nextHeaders["If-Modified-Since"] = "Mon, 26 Jul 1997 05:00:00 GMT";
 
     // set header for each key in `tokenFormat` config
-    for (var key in getTokenFormat()) {
+    Object.keys(getTokenFormat()).forEach((key) => {
       nextHeaders[key] = currentHeaders[key];
-    }
+    });
 
     return addAuthorizationHeader(currentHeaders['access-token'], nextHeaders);
-  } else {
-    return {};
   }
+
+  return {};
 }
 
 export function updateAuthCredentials(resp) {
   // check config apiUrl matches the current response url
-  if (isApiRequest(resp.url)) {
+  if (isApiRequest(resp.config.url)) {
     // set header for each key in `tokenFormat` config
-    var newHeaders = {};
+    const newHeaders = {};
 
     // set flag to ensure that we don't accidentally nuke the headers
     // if the response tokens aren't sent back from the API
-    var blankHeaders = true;
+    let blankHeaders = true;
 
     // set header key + val for each key in `tokenFormat` config
-    for (var key in getTokenFormat()) {
-      newHeaders[key] = resp.headers.get(key);
+    Object.keys(getTokenFormat()).forEach((key) => {
+      newHeaders[key] = resp.headers[key];
 
       if (newHeaders[key]) {
         blankHeaders = false;
       }
-    }
-
+    });
     // persist headers for next request
     if (!blankHeaders) {
       persistData(C.SAVED_CREDS_KEY, newHeaders);
