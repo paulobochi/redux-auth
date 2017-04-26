@@ -102,32 +102,32 @@ export function getSessionEndpoint (k) {
 
 // only should work for current session
 export function getDestroyAccountUrl (endpointKey) {
-  return `${getApiUrl(endpointKey)}${getSessionEndpoint(endpointKey).accountDeletePath}`
+  return getApiUrl(endpointKey) + getSessionEndpoint(endpointKey).accountDeletePath
 }
 
 // only should work for current session
 export function getSignOutUrl (endpointKey) {
-  return `${getApiUrl(endpointKey)}${getSessionEndpoint(endpointKey).signOutPath}`
+  return getApiUrl(endpointKey) + getSessionEndpoint(endpointKey).signOutPath
 }
 
 export function getEmailSignInUrl (endpointKey) {
-  return `${getApiUrl(endpointKey)}${getSessionEndpoint(endpointKey).emailSignInPath}`
+  return getApiUrl(endpointKey) + getSessionEndpoint(endpointKey).emailSignInPath
 }
 
 export function getEmailSignUpUrl (endpointKey) {
-  return `${getApiUrl(endpointKey)}${getSessionEndpoint(endpointKey).emailRegistrationPath}?config_name=${endpointKey}`
+  return getApiUrl(endpointKey) + getSessionEndpoint(endpointKey).emailRegistrationPath + '?config_name=' + endpointKey
 }
 
 export function getPasswordResetRequestUrl (endpointKey) {
-  return `${getApiUrl(endpointKey)}${getSessionEndpoint(endpointKey).passwordResetPath}?config_name=${endpointKey}`
+  return getApiUrl(endpointKey) + getSessionEndpoint(endpointKey).passwordResetPath + '?config_name=' + endpointKey
 }
 
 export function getPasswordUpdateUrl (endpointKey) {
-  return `${getApiUrl(endpointKey)}${getSessionEndpoint(endpointKey).passwordUpdatePath}`
+  return getApiUrl(endpointKey) + getSessionEndpoint(endpointKey).passwordUpdatePath
 }
 
 export function getTokenValidationPath (endpointKey) {
-  return `${getApiUrl(endpointKey)}${getSessionEndpoint(endpointKey).tokenValidationPath}`
+  return getApiUrl(endpointKey) + getSessionEndpoint(endpointKey).tokenValidationPath
 }
 
 export function getOAuthUrl ({provider, params, endpointKey}) {
