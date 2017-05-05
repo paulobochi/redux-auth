@@ -53,7 +53,7 @@ class PasswordResetSuccessModal extends React.Component {
         closeIcon="close">
         <Modal.Header content="Reset Your Password"/>
 
-        <form>
+        <form className="ui form">
           <Modal.Content>
             <Input
               type="password"
