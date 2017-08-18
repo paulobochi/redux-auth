@@ -1,6 +1,7 @@
 import React, {PropTypes} from "react";
 import ButtonLoader from "./ButtonLoader";
 import Input from "./Input";
+import { Form, Modal, Button } from "semantic-ui-react";
 import { emailSignInFormUpdate, emailSignIn } from "../../actions/email-sign-in";
 import { connect } from "react-redux";
 
@@ -51,9 +52,9 @@ class EmailSignInForm extends React.Component {
     );
 
     return (
-      <form className='redux-auth email-sign-in-form clearfix'
+      <Form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <Input type="text"
+        <input type="text"
                groupClassName="email-sign-in-email"
                label="Email"
                placeholder="Email"
@@ -63,7 +64,7 @@ class EmailSignInForm extends React.Component {
                onChange={this.handleInput.bind(this, "email")}
                {...this.props.inputProps.email} />
 
-        <Input type="password"
+        <input type="password"
                label="Password"
                groupClassName="email-sign-in-password"
                placeholder="Password"
@@ -82,7 +83,7 @@ class EmailSignInForm extends React.Component {
                       {...this.props.inputProps.submit}>
           Sign In
         </ButtonLoader>
-      </form>
+      </Form>
     );
   }
 }

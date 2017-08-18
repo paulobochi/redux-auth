@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import { Input, Icon } from "semantic-ui-react";
+import { Form, Icon } from "semantic-ui-react";
 import Immutable from "immutable";
 
 class AuthInput extends React.Component {
@@ -48,12 +48,13 @@ class AuthInput extends React.Component {
 
   render () {
     return (
-      <div>
-        <Input {...this.props}
+      <Form.Field>
+        <label>{this.props.label}</label>
+        <input {...this.props}
                bsStyle={(this.props.errors.size) ? "error" : null}
                onChange={this.handleInput.bind(this)} />
         {this.renderErrorList()}
-      </div>
+      </Form.Field>
     );
   }
 }
