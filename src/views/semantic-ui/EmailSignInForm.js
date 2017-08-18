@@ -1,5 +1,4 @@
 import React, {PropTypes} from "react";
-import ButtonLoader from "./ButtonLoader";
 import Input from "./Input";
 import { Form, Modal, Button } from "semantic-ui-react";
 import { emailSignInFormUpdate, emailSignIn } from "../../actions/email-sign-in";
@@ -54,7 +53,7 @@ class EmailSignInForm extends React.Component {
     return (
       <Form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <input type="text"
+        <Input type="text"
                groupClassName="email-sign-in-email"
                label="Email"
                placeholder="Email"
@@ -64,7 +63,7 @@ class EmailSignInForm extends React.Component {
                onChange={this.handleInput.bind(this, "email")}
                {...this.props.inputProps.email} />
 
-        <input type="password"
+        <Input type="password"
                label="Password"
                groupClassName="email-sign-in-password"
                placeholder="Password"
@@ -74,15 +73,17 @@ class EmailSignInForm extends React.Component {
                onChange={this.handleInput.bind(this, "password")}
                {...this.props.inputProps.password} />
 
-        <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
-                      type="submit"
-                      icon="sign in"
-                      className='email-sign-in-submit pull-right'
-                      disabled={disabled}
-                      onClick={this.handleSubmit.bind(this)}
-                      {...this.props.inputProps.submit}>
+        <Button
+          fluid
+          primary
+          loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
+          type="submit"
+          className='email-sign-in-submit pull-right'
+          disabled={disabled}
+          onClick={this.handleSubmit.bind(this)}
+          {...this.props.inputProps.submit}>
           Sign In
-        </ButtonLoader>
+        </Button>
       </Form>
     );
   }

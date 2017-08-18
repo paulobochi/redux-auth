@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import Input from "./Input";
-import ButtonLoader from "./ButtonLoader";
+import { Form, Button } from "semantic-ui-react";
 import { emailSignUpFormUpdate, emailSignUp } from "../../actions/email-sign-up";
 import { connect } from "react-redux";
 
@@ -52,8 +52,18 @@ class EmailSignUpForm extends React.Component {
     );
 
     return (
-      <form className='redux-auth email-sign-up-form clearfix'
+      <Form className='redux-auth email-sign-up-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
+        <Input type="text"
+               label="Name"
+               placeholder="name"
+               groupClassName="email-sign-up-name"
+               disabled={disabled}
+               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "name"])}
+               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "name"])}
+               onChange={this.handleInput.bind(this, "name")}
+               {...this.props.inputProps.name} />
+               
         <Input type="text"
                label="Email"
                placeholder="Email"
@@ -84,17 +94,18 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "password_confirmation")}
                {...this.props.inputProps.passwordConfirmation} />
 
-
-        <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
-                      type="submit"
-                      className="email-sign-up-submit pull-right"
-                      icon="send"
-                      disabled={disabled}
-                      onClick={this.handleSubmit.bind(this)}
-                      {...this.props.inputProps.submit}>
+        <Button
+          fluid
+          primary
+          loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
+          type="submit"
+          className='email-sign-up-submit pull-right'
+          disabled={disabled}
+          onClick={this.handleSubmit.bind(this)}
+          {...this.props.inputProps.submit}>
           Sign Up
-        </ButtonLoader>
-      </form>
+        </Button>
+      </Form>
     );
   }
 }
