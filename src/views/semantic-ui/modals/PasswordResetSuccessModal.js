@@ -1,9 +1,10 @@
 import React, { PropTypes } from "react";
-import { Modal, Button, Icon } from "semantic-ui-react";
+import { Modal, Button, Icon, Form } from "semantic-ui-react";
 import ButtonLoader from "../ButtonLoader";
 import Input from "../Input";
 import { connect } from "react-redux";
 import { hidePasswordResetSuccessModal } from "../../../actions/ui";
+import { injectIntl } from 'react-intl';
 import {
   updatePasswordModal,
   updatePasswordModalFormUpdate
@@ -53,7 +54,7 @@ class PasswordResetSuccessModal extends React.Component {
         closeIcon="close">
         <Modal.Header content="Reset Your Password"/>
 
-        <form className="ui form">
+        <Form>
           <Modal.Content>
             <Input
               type="password"
@@ -86,6 +87,18 @@ class PasswordResetSuccessModal extends React.Component {
               Cancel
             </Button>
 
+            <Button
+              fluid
+              primary
+              loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
+              type="submit"
+              className='email-sign-up-submit pull-right'
+              disabled={disabled}
+              onClick={this.handleSubmit.bind(this)}
+              {...this.props.inputProps.submit}>
+              {formatMessage({id: 'redux-auth.button.signup', defaultMessage: 'Sign up'})}
+            </Button>
+            
             <ButtonLoader
               {...this.props}
               loading={loading}
@@ -101,4 +114,4 @@ class PasswordResetSuccessModal extends React.Component {
   }
 }
 
-export default connect(({auth}) => ({auth}))(PasswordResetSuccessModal);
+export default injectIntl(connect(({auth}) => ({auth}))(PasswordResetSuccessModal));

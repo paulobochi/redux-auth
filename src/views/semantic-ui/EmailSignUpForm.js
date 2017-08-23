@@ -3,6 +3,7 @@ import Input from "./Input";
 import { Form, Button } from "semantic-ui-react";
 import { emailSignUpFormUpdate, emailSignUp } from "../../actions/email-sign-up";
 import { connect } from "react-redux";
+import { injectIntl } from 'react-intl';
 
 class EmailSignUpForm extends React.Component {
   static propTypes = {
@@ -51,22 +52,24 @@ class EmailSignUpForm extends React.Component {
       this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])
     );
 
+    const {formatMessage} = this.props.intl;
+
     return (
       <Form className='redux-auth email-sign-up-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
         <Input type="text"
-               label="Name"
-               placeholder="name"
+               label={formatMessage({id: 'redux-auth.name', defaultMessage: 'Name'})}
+               placeholder={formatMessage({id: 'redux-auth.name', defaultMessage: 'Name'})}
                groupClassName="email-sign-up-name"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "name"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "name"])}
                onChange={this.handleInput.bind(this, "name")}
                {...this.props.inputProps.name} />
-               
+
         <Input type="text"
-               label="Email"
-               placeholder="Email"
+               label={formatMessage({id: 'redux-auth.email', defaultMessage: 'Email'})}
+               placeholder={formatMessage({id: 'redux-auth.email', defaultMessage: 'Email'})}
                groupClassName="email-sign-up-email"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "email"])}
@@ -75,8 +78,8 @@ class EmailSignUpForm extends React.Component {
                {...this.props.inputProps.email} />
 
         <Input type="password"
-               label="Password"
-               placeholder="Password"
+               label={formatMessage({id: 'redux-auth.password', defaultMessage: 'Password'})}
+               placeholder={formatMessage({id: 'redux-auth.password', defaultMessage: 'Password'})}
                groupClassName="email-sign-up-password"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password"])}
@@ -85,8 +88,8 @@ class EmailSignUpForm extends React.Component {
                {...this.props.inputProps.password} />
 
         <Input type="password"
-               label="Password Confirmation"
-               placeholder="Password Confirmation"
+               label={formatMessage({id: 'redux-auth.password_confirmation', defaultMessage: 'Password Confirmation'})}
+               placeholder={formatMessage({id: 'redux-auth.password_confirmation', defaultMessage: 'Password Confirmation'})}
                groupClassName="email-sign-up-password-confirmation"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password_confirmation"])}
@@ -103,11 +106,11 @@ class EmailSignUpForm extends React.Component {
           disabled={disabled}
           onClick={this.handleSubmit.bind(this)}
           {...this.props.inputProps.submit}>
-          Sign Up
+          {formatMessage({id: 'redux-auth.button.signup', defaultMessage: 'Sign up'})}
         </Button>
       </Form>
     );
   }
 }
 
-export default connect(({auth}) => ({auth}))(EmailSignUpForm);
+export default injectIntl(connect(({auth}) => ({auth}))(EmailSignUpForm));
