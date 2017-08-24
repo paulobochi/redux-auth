@@ -12,7 +12,7 @@ class RequestPasswordResetErrorModal extends React.Component {
         show={this.props.show}
         containerClass="request-password-reset-error-modal"
         closeAction={hidePasswordResetRequestErrorModal}
-        title={formatMessage({id: 'redux-auth.modal.request_password_reset_error', defaultMessage: 'Error'})}
+        title={formatMessage({id: 'redux-auth.modal.request_password_reset_error.title', defaultMessage: 'Error'})}
         errorAddr={["requestPasswordReset", "errors"]} />
     );
   }

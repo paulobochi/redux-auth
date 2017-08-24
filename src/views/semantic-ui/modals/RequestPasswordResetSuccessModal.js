@@ -12,7 +12,7 @@ class RequestPasswordResetSuccessModal extends React.Component {
       <Modal
         show={this.props.show}
         containerClass="request-password-reset-success-modal"
-        title={formatMessage({id: 'redux-auth.modal.request_password_reset_success', defaultMessage: "Password Reset Request Success"})}
+        title={formatMessage({id: 'redux-auth.modal.request_password_reset_success.title', defaultMessage: "Password Reset Request Success"})}
         closeAction={hidePasswordResetRequestSuccessModal}>
         <p>
           {this.props.auth.getIn(["ui", "requestPasswordResetSuccessMessage"])}

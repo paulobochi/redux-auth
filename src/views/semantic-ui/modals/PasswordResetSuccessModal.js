@@ -46,20 +46,22 @@ class PasswordResetSuccessModal extends React.Component {
     let loading = this.props.auth.getIn(["updatePasswordModal", this.getEndpoint(), "loading"]),
         endpoint = this.getEndpoint();
 
+    const {formatMessage} = this.props.intl;
+
     return (
       <Modal
         open={this.props.show}
         className="password-reset-success-modal"
-        onHide={this.close.bind(this)}
-        closeIcon="close">
-        <Modal.Header content="Reset Your Password"/>
+        onClose={this.close.bind(this)}
+        closeIcon='close'>
+        <Modal.Header content={formatMessage({id: 'redux-auth.modal.password_reset_success.title', defaultMessage: "Reset Your Password"})}/>
 
-        <Form>
-          <Modal.Content>
+        <Modal.Content>
+          <Form>
             <Input
               type="password"
-              label="Password"
-              placeholder="Password"
+              label={formatMessage({id: 'redux-auth.password', defaultMessage: 'Password'})}
+              placeholder={formatMessage({id: 'redux-auth.password', defaultMessage: 'Password'})}
               disabled={loading}
               groupClassName="password-reset-success-modal-password"
               value={this.props.auth.getIn(["updatePasswordModal", endpoint, "form", "password"])}
@@ -69,14 +71,15 @@ class PasswordResetSuccessModal extends React.Component {
 
             <Input
               type="password"
-              label="Password Confirmation"
-              placeholder="Password Confirmation"
+              label={formatMessage({id: 'redux-auth.password_confirmation', defaultMessage: 'Password Confirmation'})}
+              placeholder={formatMessage({id: 'redux-auth.password_confirmation', defaultMessage: 'Password Confirmation'})}
               disabled={loading}
               groupClassName="password-reset-success-modal-password-confirmation"
               value={this.props.auth.getIn(["updatePasswordModal", endpoint, "form", "password_confirmation"])}
               errors={this.props.auth.getIn(["updatePasswordModal", endpoint, "errors", "password_confirmation"])}
               onChange={this.handleInput.bind(this, "password_confirmation")}
               {...this.props.inputProps.passwordConfirmation} />
+            </Form>
           </Modal.Content>
 
           <Modal.Actions>
@@ -84,31 +87,19 @@ class PasswordResetSuccessModal extends React.Component {
               className="password-reset-success-modal-close"
               onClick={this.close.bind(this)}
               {...this.props.inputProps.cancel}>
-              Cancel
+              {formatMessage({id: 'redux-auth.button.cancel', defaultMessage: 'Cancel'})}
             </Button>
 
             <Button
-              fluid
-              primary
-              loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
-              type="submit"
-              className='email-sign-up-submit pull-right'
-              disabled={disabled}
-              onClick={this.handleSubmit.bind(this)}
-              {...this.props.inputProps.submit}>
-              {formatMessage({id: 'redux-auth.button.signup', defaultMessage: 'Sign up'})}
-            </Button>
-            
-            <ButtonLoader
               {...this.props}
+              primary
               loading={loading}
               type="submit"
-              className="password-reset-success-modal-submit"
-              icon={<Icon name="lock" />}
               onClick={this.handleSubmit.bind(this)}
-              {...this.props.inputProps.submit} />
+              {...this.props.inputProps.submit}>
+              {formatMessage({id: 'redux-auth.button.update_password', defaultMessage: 'Update Password'})}
+            </Button>
           </Modal.Actions>
-        </form>
       </Modal>
     );
   }

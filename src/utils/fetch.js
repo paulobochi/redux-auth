@@ -74,11 +74,35 @@ function updateAuthCredentials(resp) {
   return resp;
 }
 
+function addLocaleParam(url) {
+  let defaultLocale = navigator.language || navigator.languages[0]
+
+  if (defaultLocale && defaultLocale.startsWith('pt')) {
+    defaultLocale = 'pt-BR';
+  } else {
+    defaultLocale = 'en';
+  }
+
+  defaultLocale = localStorage.getItem('defaultLocale') || defaultLocale;
+
+  if (url.indexOf('?') !== -1) {
+    url = url + `&locale=${defaultLocale}`;
+  } else {
+    url = url + `?locale=${defaultLocale}`;
+  }
+
+  return url;
+}
+
 export default function (url, options={}) {
   if (!options.headers) {
     options.headers = {}
   }
+
   extend(options.headers, getAuthHeaders(url));
+
+  url = addLocaleParam(url);
+
   return originalFetch(url, options)
     .then(resp => updateAuthCredentials(resp));
 }
