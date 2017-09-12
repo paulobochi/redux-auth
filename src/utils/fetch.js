@@ -83,8 +83,12 @@ function addLocaleParam(url) {
     defaultLocale = 'en';
   }
 
-  defaultLocale = localStorage.getItem('defaultLocale') || defaultLocale;
+  let savedLocale = localStorage.getItem('defaultLocale');
 
+  if (savedLocale && savedLocale !== 'undefined') {
+    defaultLocale = savedLocale
+  }
+  
   if (url.indexOf('?') !== -1) {
     url = url + `&locale=${defaultLocale}`;
   } else {
